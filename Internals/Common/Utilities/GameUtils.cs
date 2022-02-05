@@ -85,6 +85,9 @@ namespace WiiPlayTanksRemake.Internals.Common.Utilities
             result.Y += newPoint.X * sinRotation + newPoint.Y * cosRotation;
             return result;
         }
+
+        public static Vector2 ToVector2(this Point point) => new(point.X, point.Y);
+
         public static Vector2 DistanceVectorTo(this Vector2 start, Vector2 target) => target - start;
         public static Vector2 MousePosition => new(Input.CurrentMouseSnapshot.X, Input.CurrentMouseSnapshot.Y);
         public static int MouseX => (int)MousePosition.X;

@@ -23,7 +23,7 @@ namespace WiiPlayTanksRemake.Internals.UI
 			for (int iterator = AllUIElements.Count - 1; iterator >= 0; iterator--)
 			{
 				UIElement currentElement = AllUIElements[iterator];
-				if (!currentElement.IgnoreMouseInteractions && currentElement.Visible && currentElement.Hitbox.Contains(position))
+				if (!currentElement.IgnoreMouseInteractions && currentElement.Visible && currentElement.Hitbox.Contains(position.ToPoint()))
 				{
 					focusedElement = currentElement;
 					break;
@@ -40,11 +40,11 @@ namespace WiiPlayTanksRemake.Internals.UI
 				return false;
 			}
 
-			if (Parent is null || Parent.Hitbox.Contains(GameUtils.MousePosition))
+			if (Parent is null || Parent.Hitbox.Contains(GameUtils.MousePosition.ToPoint()))
 			{
 				if (uniqueInput is null || uniqueInput.Invoke())
 				{
-					if (Hitbox.Contains(GameUtils.MousePosition))
+					if (Hitbox.Contains(GameUtils.MousePosition.ToPoint()))
 					{
 						return true;
 					}
@@ -159,9 +159,9 @@ namespace WiiPlayTanksRemake.Internals.UI
 				return;
 			}
 
-			if (Parent is null || Parent.Hitbox.Contains(GameUtils.MousePosition))
+			if (Parent is null || Parent.Hitbox.Contains(GameUtils.MousePosition.ToPoint()))
 			{
-				if (Hitbox.Contains(GameUtils.MousePosition))
+				if (Hitbox.Contains(GameUtils.MousePosition.ToPoint()))
 				{
 					OnMouseOver?.Invoke(this);
 					MouseHovering = true;
@@ -178,7 +178,7 @@ namespace WiiPlayTanksRemake.Internals.UI
 				return;
 			}
 
-			if (!Hitbox.Contains(GameUtils.MousePosition))
+			if (!Hitbox.Contains(GameUtils.MousePosition.ToPoint()))
 			{
 				OnMouseOut?.Invoke(this);
 				MouseHovering = false;

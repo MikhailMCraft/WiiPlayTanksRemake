@@ -1,5 +1,7 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -19,7 +21,8 @@ namespace WiiPlayTanksRemake.Internals
 		}
 		public static T LoadResource<T>(ContentManager manager, string name) where T : class
 		{
-			T loaded = manager.Load<T>(name);
+			OtherContentManager otherContent = new OtherContentManager(new GameServiceContainer(), "C:/Users/Cuno/Documents/WiiPlayTanksRemake/Content/bin/Debug/net5.0/Content");
+			T loaded = otherContent.LoadContentExclusive<T>(name);
 
 			ResourceCache[name] = loaded;
 			return loaded;
@@ -30,4 +33,22 @@ namespace WiiPlayTanksRemake.Internals
 			return GetResource<T>(TankGame.Instance.Content, name);
         }
 	}
+
+	public class OtherContentManager : ContentManager
+    {
+		public OtherContentManager(IServiceProvider serviceProvider, string RootDirectory) : base(serviceProvider, RootDirectory)
+        {
+
+        }
+
+		public T LoadContentExclusive<T>(string assetName) where T : class
+        {
+			return ReadAsset<T>(assetName, null);
+        }
+
+		public void Unload(IDisposable contentItem)
+        {
+			contentItem.Dispose();
+        }
+    }
 }

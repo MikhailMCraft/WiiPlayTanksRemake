@@ -229,7 +229,7 @@ namespace WiiPlayTanksRemake.GameContent.UI
         {
             TankGame.Instance.graphics.PreferredBackBufferWidth = 1920;
             TankGame.Instance.graphics.PreferredBackBufferHeight = 1080;
-            TankGame.Instance.Window.IsBorderless = TankGame.Settings.BorderlessWindow = !TankGame.Settings.BorderlessWindow;
+            TankGame.Instance.Window.IsBorderlessEXT = TankGame.Settings.BorderlessWindow = !TankGame.Settings.BorderlessWindow;
             TankGame.Instance.graphics.ApplyChanges();
             BorderlessWindowToggle.Remove();
             BorderlessWindowToggle = new(null, 1, (uiImage, spriteBatch) => QuickIndicator(uiImage, spriteBatch, TankGame.Settings.BorderlessWindow ? Color.Green : Color.Red));

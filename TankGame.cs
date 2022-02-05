@@ -281,7 +281,7 @@ namespace WiiPlayTanksRemake
 #region Config Initialization
 
             graphics.SynchronizeWithVerticalRetrace = Settings.Vsync;
-            Window.IsBorderless = Settings.BorderlessWindow;
+            Window.IsBorderlessEXT = Settings.BorderlessWindow;
 
 #endregion
 
@@ -462,7 +462,7 @@ namespace WiiPlayTanksRemake
 
             base.Draw(gameTime);
 
-            spriteBatch.Begin(blendState: BlendState.NonPremultiplied, effect: GameShaders.MouseShader);
+            spriteBatch.Begin(default, BlendState.NonPremultiplied, default, default, default, GameShaders.MouseShader);
 
             MouseRenderer.DrawMouse();
 

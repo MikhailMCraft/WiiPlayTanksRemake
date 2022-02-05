@@ -16,35 +16,39 @@ namespace WiiPlayTanksRemake.Internals.Common
         // starts the tracking of keys, only when input is not already being tracked
         public static void BeginInput() {
             trackingInput = true;
-            TankGame.Instance.Window.TextInput += Window_TextInput;
+            TextInputEXT.TextInput += TextInputEXT_TextInput;
         }
 
-        private static void Window_TextInput(object sender, TextInputEventArgs e) {
-            bool isBack = e.Key == Keys.Back;
+        private static void TextInputEXT_TextInput(char obj)
+        {
+            Console.WriteLine(obj);
+            /*bool isBack = obj.Key == Keys.Back;
             bool isSpace = e.Key == Keys.Space;
             bool ignoreable = e.Key == Keys.Enter;
 
             if (ignoreable)
                 return;
 
-            if (isSpace) {
+            if (isSpace)
+            {
                 InputtedText += " ";
                 return;
             }
 
-            if (isBack && InputtedText.Length > 0) {
+            if (isBack && InputtedText.Length > 0)
+            {
                 InputtedText = InputtedText.Remove(InputtedText.Length - 1);
                 return;
             }
 
-            InputtedText += e.Character;
+            InputtedText += e.Character;*/
         }
 
         // stops tracking keys
         public static void EndInput() {
             trackingInput = false;
             InputtedText = string.Empty;
-            TankGame.Instance.Window.TextInput -= Window_TextInput;
+            TextInputEXT.TextInput -= TextInputEXT_TextInput;
         }
     }
 }

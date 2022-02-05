@@ -66,7 +66,7 @@ namespace WiiPlayTanksRemake.GameContent
                 _ => null
             };
 
-            this.height = MathHelper.Clamp(height, 0, 7); // if 0, it will be a hole.
+            this.height = GameUtils.Clamp(height, 0, 7); // if 0, it will be a hole.
 
             model = TankGame.CubeModel;
 

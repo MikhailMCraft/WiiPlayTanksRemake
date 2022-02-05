@@ -208,8 +208,8 @@ namespace WiiPlayTanksRemake.GameContent
                 if (element.HasScissor)
                     TankGame.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
             }
-            tankToSpawnType = MathHelper.Clamp(tankToSpawnType, 1, Enum.GetValues<TankTier>().Length - 1);
-            tankToSpawnTeam = MathHelper.Clamp(tankToSpawnTeam, 0, Enum.GetValues<Team>().Length - 1);
+            tankToSpawnType = GameUtils.Clamp(tankToSpawnType, 1, Enum.GetValues<TankTier>().Length - 1);
+            tankToSpawnTeam = GameUtils.Clamp(tankToSpawnTeam, 0, Enum.GetValues<Team>().Length - 1);
 
             #region TankInfo
             DebugUtils.DrawDebugString(TankGame.spriteBatch, "Spawn Tank With Info:", GameUtils.WindowTop + new Vector2(0, 8), 1, centerIt: true);

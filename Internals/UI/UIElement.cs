@@ -109,7 +109,7 @@ namespace WiiPlayTanksRemake.Internals.UI
             {
                 DrawSelf(spriteBatch);
                 DrawChildren(spriteBatch);
-                if (Tooltip is not null && Hitbox.Contains(GameUtils.MousePosition))
+                if (Tooltip is not null && Hitbox.Contains(GameUtils.MousePosition.ToPoint()))
                 {
                     QuickIndicator(spriteBatch, Color.White);
                 }
@@ -125,7 +125,7 @@ namespace WiiPlayTanksRemake.Internals.UI
 
                 TankGame.Instance.GraphicsDevice.ScissorRectangle = Scissor;
 
-                spriteBatch.Begin(rasterizerState: rastState);
+                spriteBatch.Begin(default, default, default, default, rastState);
 
                 DrawSelf(spriteBatch);
                 DrawChildren(spriteBatch);
@@ -229,7 +229,7 @@ namespace WiiPlayTanksRemake.Internals.UI
             for (int iterator = Children.Count - 1; iterator >= 0; iterator--)
             {
                 UIElement currentElement = Children[iterator];
-                if (!currentElement.IgnoreMouseInteractions && currentElement.Visible && currentElement.Hitbox.Contains(position))
+                if (!currentElement.IgnoreMouseInteractions && currentElement.Visible && currentElement.Hitbox.Contains(position.ToPoint()))
                 {
                     focusedElement = currentElement;
                     break;
@@ -246,7 +246,7 @@ namespace WiiPlayTanksRemake.Internals.UI
                 return null;
             }
 
-            return Hitbox.Contains(position) ? this : null;
+            return Hitbox.Contains(position.ToPoint()) ? this : null;
         }
 
         internal void QuickIndicator(SpriteBatch spriteBatch, Color color)
